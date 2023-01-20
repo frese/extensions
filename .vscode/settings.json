@@ -1,4 +1,24 @@
 {
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "gotoSymbolStack.currentStackPosition": 2,
+    "gotoSymbolStack.maxStackPosition": 2,
+    "gotoSymbolStack.filePositionInfo": [
+        {
+            "textFile": "/Users/alfr/code/frese/extensions/extensions/linear/src/components/CreateIssueForm.tsx",
+            "viewColumn": 1,
+            "textPosition": {
+                "line": 375,
+                "character": 14
+            }
+        },
+        {
+            "textFile": "/Users/alfr/code/frese/extensions/extensions/linear/src/components/CreateIssueForm.tsx",
+            "viewColumn": 1,
+            "textPosition": {
+                "line": 193,
+                "character": 35
+            }
+        }
+    ]
+}
