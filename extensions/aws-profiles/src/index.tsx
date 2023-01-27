@@ -1,7 +1,7 @@
-import { ActionPanel, Detail, List, Action, getPreferenceValues, showToast, Toast } from "@raycast/api";
-import { exec }  from 'child_process'
-import { promisify } from 'util';
+import { Action, ActionPanel, getPreferenceValues, List, showToast, Toast } from "@raycast/api";
+import { exec } from 'child_process';
 import { homedir } from 'os';
+import { promisify } from 'util';
 import path = require('path');
 
 const execp = promisify(exec);
@@ -56,7 +56,6 @@ function ProfileListItem(props: {title: string, accessories: List.Item.Accessory
         accessories={props.accessories}
         actions={
           <ActionPanel>
-            {/* <Action.Push title="Show Details" target={} /> */}
             <Action title="" onAction={ () => { OpenAssumeConsole(props.profile) }} />
           </ActionPanel>
         }
@@ -71,11 +70,19 @@ export default function Command() {
     for (const header in profiles) {
         if (header != 'default') {
             const prof = header.replace('profile ', '')
-            const title=profiles[header].sso_account_name 
-            const a: List.Item.Accessory[] = [
-                {text: profiles[header].sso_account_id},
-                {text: profiles[header].sso_role_name}
-                ]
+            let title=""
+            if ("sso_account_name" in profiles[header]) {
+                title=profiles[header].sso_account_name 
+            } else {
+                title=header.replace(/^profile /, "")
+            }
+            let a: List.Item.Accessory[] = []
+            if ("sso_account_id" in profiles[header] && "sso_role_name" in profiles[header]) {
+                a = [
+                    {text: profiles[header].sso_account_id},
+                    {text: profiles[header].sso_role_name}
+                    ]
+            }
             list.push(<ProfileListItem key={prof} profile={prof} title={title} accessories={a}/>);
         }
     }
