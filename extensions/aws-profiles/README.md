@@ -16,3 +16,7 @@ Examples :
 -   Opens Terminal and login using sso
 
     osascript -e 'tell app "Terminal" to do script "aws sso login --profile <profile>"'
+
+-   Run custom script to do custom stuff
+
+    /usr/local/bin/my-profile-script -p <profile>
