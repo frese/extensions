@@ -71,17 +71,23 @@ export default function Command() {
         if (header != 'default') {
             const prof = header.replace('profile ', '')
             let title=""
+            let a: List.Item.Accessory[] = []
             if ("sso_account_name" in profiles[header]) {
                 title=profiles[header].sso_account_name 
             } else {
                 title=header.replace(/^profile /, "")
             }
-            let a: List.Item.Accessory[] = []
-            if ("sso_account_id" in profiles[header] && "sso_role_name" in profiles[header]) {
-                a = [
-                    {text: profiles[header].sso_account_id},
-                    {text: profiles[header].sso_role_name}
-                    ]
+            if ("sso_account_id" in profiles[header]) {
+                title=title+" (" + profiles[header].sso_account_id + ")"
+                a.push({text: profiles[header].sso_account_id})
+            }
+            if ("sso_role_name" in profiles[header]) {
+                a.push({text: profiles[header].sso_role_name})
+            }
+            if ("region" in profiles[header]) {
+                a.push({text: profiles[header].region})
+            } else if ("sso_region" in profiles[header] ) {
+                a.push({text: profiles[header].sso_region})
             }
             list.push(<ProfileListItem key={prof} profile={prof} title={title} accessories={a}/>);
         }
