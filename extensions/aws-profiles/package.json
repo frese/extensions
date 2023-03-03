@@ -3,7 +3,7 @@
     "name": "aws-profiles",
     "title": "AWS Profiles",
     "description": "Lists AWS profiles, execute a command/script for a chosen profile.",
-    "icon": "command-icon.png",
+    "icon": "profile-icon.png",
     "author": "frese",
     "categories": [
         "Developer Tools",
